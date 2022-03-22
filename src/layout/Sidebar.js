@@ -9,6 +9,8 @@ import { ListsIcon } from '../icons/Icon';
 import { ProfileIcon } from '../icons/Icon';
 import { MoreIcon } from '../icons/Icon';
 import SideLink from '../components/SideLink';
+import { useState } from 'react';
+import UserBox from '../components/UserBox';
 
 
 const sideLinks = [
@@ -47,6 +49,10 @@ const sideLinks = [
 ];
 
 const Sidebar = () => {
+    const [active,setActive]=useState("Home");
+    const handleMenuItemClick=(name)=>{
+        setActive(name)
+    }
     return (
         <div className='flex flex-col justify-between w-72 px-2' >
             <div>
@@ -60,6 +66,8 @@ const Sidebar = () => {
                                 key={name}
                                 name={name}
                                 Icon={icon}
+                                active={active}
+                                onMenuItemClick={handleMenuItemClick}
                             />
                         ))}
                     </ul>
@@ -68,7 +76,7 @@ const Sidebar = () => {
                     Tweet
                 </button>
             </div>
-            <div>Alt Taraf</div>
+           <UserBox/>
 
         </div>
     )
